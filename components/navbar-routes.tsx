@@ -1,20 +1,31 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
+import { Button } from "./ui/button";
+import { Link, LogOut } from "lucide-react";
 
 export const NavbarRoutes = () => {
     const pathName = usePathname();
     const router = useRouter();
 
     const isTeacherPage = pathName?.startsWith("/teacher");
-    const isStudentPage = pathName?.includes("/chapter");
-    
+    const isStudentPage = pathName?.includes("/chapter");  
 
     return (  
-        <div className="flex gap-x-2 ml-auto">
-            <UserButton />
+        <div className="flex gap-x-10 ml-auto">
+            {isTeacherPage || isStudentPage ? (
+                <Button size="sm" variant={"ghost"}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Exit
+                </Button>
+            ) : (
+                <Button onClick={() => router.push("/teacher")} size="sm" variant={"ghost"}>
+                    <Link className="hidden" /> 
+                    Teacher mode
+                </Button>
+            )}
+            <UserButton/>
         </div>
     );
 }
