@@ -1,6 +1,6 @@
 "use client";
 
-import { Compass, Layout, Home, BookOpen, PenTool } from "lucide-react";
+import { Compass, Layout, Home, BookOpen, Pencil } from "lucide-react";
 import { SidebarItem } from "./sidebar-items";
 
 const guestRoutes = [
@@ -20,7 +20,7 @@ const guestRoutes = [
         href: "/my-learning"
     },
     {
-        icon: PenTool,
+        icon: Pencil,
         label: "Practice",
         href: "/practice"
     }
