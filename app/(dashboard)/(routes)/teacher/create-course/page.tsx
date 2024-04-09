@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 import {
     Form,
@@ -18,6 +19,7 @@ import {
     FormLabel,
     FormMessage
 } from "@/components/ui/form";
+
 
 
 
@@ -42,7 +44,7 @@ const CreatePage = () => {
             const response = await axios.post("/api/courses", values);
             router.push(`/teacher/create-course/${response.data.id}`);
         } catch (error) {
-            console.log("Something went wrong");
+            toast.error("Something went wrong");
         }
     }
 
