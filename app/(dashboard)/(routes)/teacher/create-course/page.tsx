@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 import * as z from "zod";
 import axios from "axios";
@@ -11,6 +11,7 @@ import {
     FormControl,
     FormDescription,
     FormField,
+    FormItem,
     FormLabel,
     FormMessage
 } from "@/components/ui/form";
@@ -29,8 +30,7 @@ const CreatePage = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             title: ""
-        
-        }
+        },
     });
 
     const { isSubmitting, isValid } = form.formState;
@@ -40,7 +40,38 @@ const CreatePage = () => {
 
     return (  
         <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
-            <h1>Create Course</h1>
+            <div>
+                <h1 className="text-2xl">
+                    Name your course
+                </h1>
+                <p className="text-sm text-slate-600 italic pt-2">
+                    What would you like to name your course? Don&apos;t worry, you can change this later.
+                </p>
+
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-6 pt-4 mt-8"
+                    >
+                        <FormField 
+                            control={form.control}
+                            name="title"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel> 1. Course title </FormLabel>
+                                    <FormControl>
+                                        <Input 
+                                            disabled={isSubmitting}
+                                            {...field}
+                                            placeholder="Enter course title"
+                                        />
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />                   
+                    </form>
+                </Form>
+            </div>
         </div> 
     );
 }
