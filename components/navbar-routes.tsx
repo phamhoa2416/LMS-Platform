@@ -13,19 +13,23 @@ export const NavbarRoutes = () => {
     const isStudentPage = pathName?.includes("/chapter");  
 
     return (  
-        <div className="flex gap-x-10 ml-auto">
-            {isTeacherPage || isStudentPage ? (
+        <div className="flex gap-x-8 ml-auto">
+            {isTeacherPage || isStudentPage ? (             
                 <Button size="sm" variant={"ghost"}>
                     <LogOut className="h-4 w-4 mr-2" />
                     Exit
                 </Button>
+
+
             ) : (
                 <Button onClick={() => router.push("/teacher")} size="sm" variant={"ghost"}>
                     <Link className="hidden" /> 
                     Teacher mode
                 </Button>
             )}
-            <UserButton/>
+            <UserButton
+                afterSignOutUrl="/"    
+            />
         </div>
     );
 }
